@@ -17,11 +17,19 @@ const shuffle = (array) => {
   return array;
 };
 
+
 /* カードを並べる */
 shuffle(trump).forEach((card) => {
   const el = document.createElement("div");
-  el.classList.add("card");
   el.innerHTML = `<div>${card.suit} ${card.number}</div>`;
+  el.classList.add("card");
+  el.setAttribute('id', `${card.suit}${card.number}`);
+  el.addEventListener('click', () => open(`${card.suit}${card.number}`));
   const table = document.getElementById("table");
   table.appendChild(el);
 });
+
+/* クリックしたときの処理 */
+const open = (id) => {
+  document.getElementById(id).classList.add('open');
+};
