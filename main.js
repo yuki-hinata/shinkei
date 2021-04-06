@@ -20,16 +20,38 @@ const shuffle = (array) => {
 
 /* カードを並べる */
 shuffle(trump).forEach((card) => {
+  const cardId = card.suit + card.number;
   const el = document.createElement("div");
   el.innerHTML = `<div>${card.suit} ${card.number}</div>`;
   el.classList.add("card");
-  el.setAttribute('id', `${card.suit}${card.number}`);
-  el.addEventListener('click', () => open(`${card.suit}${card.number}`));
+  el.setAttribute('id', cardId); // カードにユニークなidをつける
+  el.addEventListener('click', () => open(cardId)); // クリックイベントを追加
   const table = document.getElementById("table");
   table.appendChild(el);
 });
 
 /* クリックしたときの処理 */
 const open = (id) => {
-  document.getElementById(id).classList.add('open');
+  switch (openCards.length) {
+    case 0:
+      document.getElementById(id).classList.add('open');
+      openCards.push(id);
+      break;
+    case 1:
+      if (openCards[0] !== id) { // すでにオープンしているカードをクリックした場合はなにも起こらないように
+        document.getElementById(id).classList.add('open');
+        openCards.push(id);
+      }
+      break;
+    case 2:
+      document.getElementById(openCards[0]).classList.remove('open');
+      document.getElementById(openCards[1]).classList.remove('open');
+      openCards.length = 0;
+      document.getElementById(id).classList.add('open');
+      openCards.push(id);
+      break;
+  }
 };
+
+/* オープンしているカードを保存する変数 */
+const openCards = [];
