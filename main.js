@@ -39,11 +39,23 @@ const open = (id) => {
       break;
     case 1:
       if (openCards[0] !== id) { // すでにオープンしているカードをクリックした場合はなにも起こらないように
-        document.getElementById(id).classList.add('open');
         openCards.push(id);
+        document.getElementById(id).classList.add('open');
+        if (openCards[0].slice(1) === id.slice(1)) {
+          /* 揃った場合の処理 */
+          openCards.forEach(openCard => document.getElementById(openCard).classList.add('matching'));
+          pairCount++;
+          /* すべて揃えた場合 */
+          if (pairCount > 25) {
+            document.getElementById('score').textContent = 'Congratulate!!';
+          } else {
+            document.getElementById('score').textContent = '揃えた回数: ' + pairCount;
+          }
+        }
       }
       break;
     case 2:
+      document.querySelectorAll('.matching').forEach(matchedCard => matchedCard.classList.add('disappear'));
       document.getElementById(openCards[0]).classList.remove('open');
       document.getElementById(openCards[1]).classList.remove('open');
       openCards.length = 0;
@@ -55,3 +67,6 @@ const open = (id) => {
 
 /* オープンしているカードを保存する変数 */
 const openCards = [];
+
+/* 揃ったペアの数を保存する変数 */
+let pairCount = 0;

@@ -28,3 +28,12 @@
   color: black;
   background-image: none;
 }
+
+.matching {
+  background-color: pink;
+}
+
+.matching.disappear {
+  opacity: 0;
+  pointer-events: none; /* マウスに関するイベントを効かないようにする */
+}
