@@ -5,8 +5,13 @@
 #table {
   display: flex;
   flex-wrap: wrap;
+  background-color: skyblue;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
 }
 
+/* カードのベースとなるスタイル */
 .card {
   width: 60px;
   height: 90px;
@@ -15,24 +20,30 @@
   margin: 8px;
   padding-top: 24px;
   text-align: center;
+  background-color: #fff;
 
+  /* 裏の場合のカードのスタイル */
   color: rgba(0, 0, 0, 0);
   background-image: url(https://picsum.photos/60/90);
 }
 
+/* カードにマウスを乗せたときのスタイル */
 .card:hover {
   cursor: pointer;
 }
 
+/* カードがオープンしている場合のスタイル */
 .card.open {
   color: black;
   background-image: none;
 }
 
+/* オープンしているカードが揃っていた場合のスタイル */
 .matching {
   background-color: pink;
 }
 
+/* 揃えたカードのスタイル */
 .matching.disappear {
   opacity: 0;
   pointer-events: none; /* マウスに関するイベントを効かないようにする */
