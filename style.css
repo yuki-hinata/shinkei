@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+#table {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 60px;
+  height: 90px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  margin: 8px;
+  padding-top: 24px;
+  text-align: center;
+}
